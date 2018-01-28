@@ -1,10 +1,8 @@
 class EventsController < ApplicationController
-
   def index
     @events = Event.all
   end
 
-  
   def new
     @event = Event.new
   end
@@ -28,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = WEvent.find(params[:id])
+    @event = Event.find(params[:id])
 
     if @event.update(event_params)
       redirect_to @event
@@ -41,5 +39,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:event_name, :start_date, :end_date, :venue)
   end
-
 end
