@@ -16,36 +16,11 @@
 </p>
 
 <h2>参加者</h2>
-<% @event.attends.each do |attend| %>
-  <p>
-    <strong>ユーザ名</strong>
-    <%= attend.user.username %>
-  </p>
-  <p>
-    <strong>出欠</strong>
-    <%= attend.attend_type %>
-  </p>
-
-  <p>
-    <strong>コメント</strong>
-    <%= attend.comment %>
-  </p>
-<% end %>
+<%= render @event.attends %>
 
 <h2>出欠登録</h2>
-<%= form_for([@event, @event.attends.build]) do |f| %>
-  <p>
-    <%= f.label :attend %>
-    <%= f.select :attend_type, [["出席", "attend"], ["欠席", "cancel"]] %>
-  </p>
-  <p>
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render "attends/form" %>
+
 
 <%= link_to 'Back', events_path %> | <%= link_to 'Edit', edit_event_path(@event) %>
 
